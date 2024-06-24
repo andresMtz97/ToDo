@@ -52,7 +52,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="x5o-Lt-L5Y">
-                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="35"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="34.666666666666664"/>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -108,10 +108,20 @@
                                 <action selector="cancelButtonTapped:" destination="xb4-8L-dfE" id="tu9-Pc-amS"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="yxD-64-BLm"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="yxD-64-BLm">
+                            <connections>
+                                <segue destination="Lgl-Gy-u4l" kind="unwind" unwindAction="unwindToDoListWithSegue:" id="D7u-bf-eEm"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="taskDate" destination="x5o-Lt-L5Y" id="sir-UG-pwd"/>
+                        <outlet property="taskNotes" destination="Iw7-Ba-bN0" id="RSK-Br-bjs"/>
+                        <outlet property="taskTitle" destination="1cP-2E-14r" id="HbM-Yz-vZx"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NQ4-cw-M9Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Lgl-Gy-u4l" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4197.7099236641216" y="10.563380281690142"/>
         </scene>
@@ -127,13 +137,30 @@
                                 <rect key="frame" x="16" y="103" width="361" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Dgk-Gf-OZJ" customClass="TDTaskCell" customModule="ToDo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="361" height="43.666667938232422"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="50" id="Dgk-Gf-OZJ" customClass="TDTaskCell" customModule="ToDo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="361" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dgk-Gf-OZJ" id="UZo-zC-ics">
-                                            <rect key="frame" x="0.0" y="0.0" width="361" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="361" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhi-NI-hCC">
+                                                    <rect key="frame" x="36" y="11" width="289" height="28"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="fhi-NI-hCC" secondAttribute="trailing" constant="16" id="3Ef-C6-Vf3"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="fhi-NI-hCC" secondAttribute="bottom" id="VYZ-Tr-PAR"/>
+                                                <constraint firstItem="fhi-NI-hCC" firstAttribute="leading" secondItem="UZo-zC-ics" secondAttribute="leadingMargin" constant="16" id="YiD-0I-YLW"/>
+                                                <constraint firstItem="fhi-NI-hCC" firstAttribute="top" secondItem="UZo-zC-ics" secondAttribute="topMargin" id="oUt-NA-6S2"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="title" destination="fhi-NI-hCC" id="aNf-86-BFe"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -148,6 +175,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nmL-bk-WpH">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="FnL-ZA-EFM">
+                            <connections>
+                                <action selector="editButtonTapped:" destination="PGf-LD-P4X" id="BaW-gO-6It"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="36e-Mc-90a">
                             <connections>
                                 <segue destination="KE3-Lj-SDq" kind="presentation" identifier="addTaskSegue" id="cLD-8t-HPa"/>
